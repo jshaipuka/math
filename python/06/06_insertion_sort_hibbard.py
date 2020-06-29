@@ -15,17 +15,17 @@ def insertion_sort(array, stepf):
 
 	while increment > 0:
 
-  	for startPosition in range(increment):
-  		stepInsertionSort(array, startPosition, increment)
-  
-  	print("Incrementing by", increment,". Sorted array:", array)
-  
-  	increment = stepf(increment) if stepf(increment) < increment else increment // 2
+		for startPosition in range(increment):
+			stepInsertionSort(array, startPosition, increment)
+	
+		print("Incrementing by", increment,". Sorted array:", array)
+	
+		increment = stepf(increment) if stepf(increment) < increment else increment // 2
 	return array
 
 
 def stepInsertionSort(array, start, step):
-  # from starting postion + "step" until array end do sorting with incrementing by "step"
+	# from starting postion + "step" until array end do sorting with incrementing by "step"
 	for position in range(start + step, len(array), step):
 		currentvalue = array[position]
 

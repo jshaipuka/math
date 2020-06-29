@@ -18,7 +18,7 @@ def insertion_sort(array, stepf):
 
 
 def stepInsertionSort(array, start, step):
-  # from starting postion + "step" until array end do sorting with incrementing by "step"
+	# from starting postion + "step" until array end do sorting with incrementing by "step"
 	for position in range(start + step, len(array), step):
 		currentvalue = array[position]
 
