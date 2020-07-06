@@ -5,8 +5,13 @@
 
 
 Insertionsort - Да
+
 Selectionsort - Нет. Всегда делает swap, не проверяя `arr[newMinIndex] == arr[minIndex]`.
+
 Mergesort - Да(?)
+
 Quicksort - Нет. 
+
 Bubblesort - Да
+
 Heapsort - Нет (?)
