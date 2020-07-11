@@ -2,16 +2,16 @@ def binary_search(arr, search_value, start, finish):
   while start < finish:
     mid = (finish + start) // 2
 
-    if search_value < arr[mid]:
-      finish = mid - 1
+    if search_value == arr[mid]:
+      return mid
+    elif search_value < arr[mid]:
+      finish = mid
     elif search_value > arr[mid]: 
       start = mid + 1
     else:
       return mid
-  return -1 
 
-
-# binary search doen't work because array must be sorted.
+  return start
 
 def insertion_sort_with_binary_search(arr):
   # if len(arr) == 1 it is sorted
@@ -33,5 +33,3 @@ def insertion_sort_with_binary_search(arr):
 test = [7, 2, 3, 1, 5]
 
 print(insertion_sort_with_binary_search(test))
-
-# Ne rabotaet

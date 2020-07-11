@@ -9,19 +9,12 @@ def insertion_sort(array, stepf):
   # 0.2*(9*(9/4)^(i-1)-4) < n
   # (9/4)^(i-1) < (5*n + 4)/9
   # i < log 9/4 ((5*n + 4)/9) + 1
-  limit = math.log((5 * n + 4)/9, 9/4) + 1
+  limit = math.floor(math.log((5 * n + 4)/9, 9/4) + 1)
 
-  increment = 1 if limit < 1 else stepf(math.floor(limit))
-
-  while increment > 0:
-
-    for startPosition in range(increment):
-      stepInsertionSort(array, startPosition, increment)
-
-    print("Incrementing by", increment, ". Sorted array:", array)
-
-    increment = stepf(increment) if stepf(
-      increment) < increment else increment // 2
+  for i in range(limit, 0, -1):
+    step = stepf(i)
+    stepInsertionSort(array, i, step)
+    print("Incrementing by", step, ". Sorted array:", array)
   return array
 
 
