@@ -8,7 +8,7 @@ def generate_random_sequence_from_alphabet(max_items, alphabet):
   n = len(alphabet)
   arr = []
 
-  for i in range(0, max_items):
+  for _ in range(0, max_items):
     arr.append(alphabet[random.randrange(n)])
 
   return arr
@@ -17,18 +17,17 @@ def generate_random_sequence_from_alphabet(max_items, alphabet):
 
 # alphabet is distinct and sorted
 def counting_sort(arr, alphabet):
-  count = [0]*len(alphabet)
+  counter = dict.fromkeys(alphabet, 0)
 
   for i in range(0, len(arr)):
     letter = arr[i]
-    letter_sort_index = alphabet.index(letter)
-    count[letter_sort_index] += 1
+    counter[letter] += 1
   
   arr = [] # reuse array
 
-  for i in range(0, len(count)):
-    print('There are ', count[i], alphabet[i])
-    arr.extend([alphabet[i]]*count[i])
+  for letter, count in counter.items():
+    print('There are ', count, letter)
+    arr.extend([letter]*count)
   
   return arr
 
