@@ -10,13 +10,15 @@ import time
 
 def fibonacci_sequence(previous, current, count, until):
   if count == until:
-    return current
+    return current + previous
   elif current == 0 and previous == 0:
     return fibonacci_sequence(0, 1, count + 1, until)
   elif current == 1 and previous == 0:
     return fibonacci_sequence(1, 1, count + 1, until)
   else:
     return fibonacci_sequence(current, previous + current, count + 1, until)
+
+# 2 предыдущих проверить
 
 def generate_fibonacci_sequence(until):
   num = fibonacci_sequence(0, 0, 1, until) if until > 0 else 0

@@ -1,20 +1,30 @@
 # Есть граф. Определить количество компонент связности. Определить, есть ли циклы
 
 
-def check_has_graph_cycles(graph):
+def check(graph):
+  stack = []
   has_graph_cycles = False
 
-  graph_vertices_visited = set()
+  graph_vertices_visited = [[False for i in range(len(graph))] for j in range(len(graph))] 
 
   for i in range(len(graph)):
     for j in range(len(graph)):
       if graph[i][j] == 1:
-        if j not in graph_vertices_visited:
-          graph_vertices_visited.add(j)
+        if graph_vertices_visited[i][j] == False:
+          graph_vertices_visited[i][j] = True
+          stack.append(graph[i][j])
         else:
           has_graph_cycles = True
+          break
 
-  return ("unknown number of", has_graph_cycles)
+  
+      exploring_graph = graph_vertices_visited[i][j]
+
+  last_graph_explored = stack.pop()
+  return has_graph_cycles
+
+  print("noneee")
+
 
 
 #======================== main

@@ -18,22 +18,22 @@ def generate_random_sequence_from_alphabet(max_items, max_digits, alphabet):
 
 # alphabet is distinct and sorted. Word length are the same
 def radix_sort(arr, word_length, alphabet):
+  groups = dict.fromkeys(map(str, alphabet), [])
+
   for check_digit in range(word_length, 0, -1):
-    groups = [ [] for _ in range(len(alphabet)) ]
+    # groups = groups_initial.copy()
 
-    for letter in range(len(alphabet)):
-      for word_index in range(len(arr)):
-        word = arr[word_index]
-        digit = word[check_digit - 1]
+    for word_index in range(len(arr)):
+      word = arr[word_index]
+      digit = word[check_digit - 1]
 
-        if digit == str(alphabet[letter]):
-          groups[alphabet[letter]].append(word)
-          print('inserting', word, 'into group number', letter, 'because we are checking for letter', alphabet[letter], ' at index', check_digit)
-    
+      if digit in groups:
+        groups[digit].append(word)
+  
     arr = [] # reuse array
 
-    for i in range(0, len(groups)):
-      arr.extend(groups[i])
+  for group in groups.values():
+    arr.extend(group)
   
   return arr
 

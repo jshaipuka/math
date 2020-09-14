@@ -1,4 +1,6 @@
 from math import inf
+import numpy as np
+import heapq
 
 def graph_as_matrix(graph):
   nodes = [*graph.keys()]
@@ -17,8 +19,17 @@ def graph_as_matrix(graph):
 
 
 
-def sp(nodes, matrix, start, end):
+def mst(nodes, matrix, start, end):
   n = len(nodes)
+
+  nodes_priority_queue = {}
+  distance = [ inf for _ in range(n)]
+  parent = [ None for _ in range(n)]
+
+  distance[start] = 0
+  
+  
+
   for k in range(n):
     for i in range(n):
       for j in range(n):
@@ -50,7 +61,7 @@ end = 7 # 'H'
 
 print('Adjacency matrix \n', np.matrix(matrix))
 
-shortest_path = sp(nodes, matrix, start, end)
-print('Adjacency matrix \n', np.matrix(shortest_path))
+minimum_spanning_tree = mst(nodes, matrix, start, end)
+print('Adjacency matrix \n', np.matrix(minimum_spanning_tree))
 
-print("Shortest path from ", nodes[start], " to ", nodes[end], " is ", shortest_path[start][end])
+# print("Shortest path from ", nodes[start], " to ", nodes[end], " is ", shortest_path[start][end])

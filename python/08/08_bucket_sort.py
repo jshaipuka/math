@@ -32,7 +32,8 @@ def insertion_sort(arr):
 
 def bucket_sort(arr, a, b):
   n = len(arr)
-  buckets = [ [] for _ in range(n) ]
+  buckets = [ [] for _ in range(n) ] # problema. Esli bakety dovoljno boljshie, to u nas problemy (naprimer vse v 1 bucket). Esli slishkom malenjkij bucket (namprer v 1 bcukete 1 element, a v drugom buckete 10 elementov. POluchaetsja neravnomerno). 4toby najti razmer bucketa nuzna predvariteljnaja operacija. Mozhno pereborom.
+# mozhet 4to-to svjazannoe s logn?
 
   for i in range(n):
     value = arr[i]

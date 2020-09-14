@@ -1,6 +1,5 @@
 # Дан массив A[1:n] вещественных чисел, отсортированный по возрастанию, а также числа p, q, r. Предложите алгоритм, строящий массив B[1:n], состоящий из чисел px^2+qx+r, где x∈A, также отсортированный по возрастанию. Ограничение по времени — O(n), по дополнительной памяти — O(n)
 
-  
 def merge(leftArray, rightArray):
   leftIndex, rightIndex = 0, 0
   leftArrayLength = len(leftArray)
@@ -51,15 +50,21 @@ def solve_B_quadratic(params, forward = True, x0 = None):
       index_of_closest_x0 = i # found where x0 is in array
 
   if index_of_closest_x0 == -1 or A[len(A) - 1] < x0: # not found or all array items are smaller than x0
-    if forward:
-      return B[::-1]
+    if p < 0:
+      if index_of_closest_x0 == -1: # is on the left
+        return B[::-1]
+      else:
+        return B
     else:
-      return B
+      if index_of_closest_x0 == -1: # is on the left
+        return B
+      else:
+        return B[::-1]
   else:
     if p > 0:
-      return merge(B[:index_of_closest_x0][::-1], B[index_of_closest_x0:])
+      return merge(B[:index_of_closest_x0 + 1][::-1], B[index_of_closest_x0 + 1:])
     else:
-      return merge(B[:index_of_closest_x0], B[index_of_closest_x0:][::-1])
+      return merge(B[:index_of_closest_x0 + 1], B[index_of_closest_x0 + 1:][::-1])
 
 def solve(params):
   [ A, p, q, r ] = params
@@ -76,13 +81,13 @@ def solve(params):
       #solve reverse
       return solve_B(params, False)
   else:
-    x0 = -q // (2 * p)
+    x0 = -q / (2 * p)
     return solve_B_quadratic(params, True, x0)
 
 
 A = [-100, -3, -2, -0.5, 1, 2]
 p = -1
-q = 0
+q = 15
 r = 0
 
 test = [A, p, q, r]

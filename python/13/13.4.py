@@ -24,8 +24,14 @@ def bellman_ford(graph, start, end):
   for _ in range(len(nodes)):
     for node in nodes:
       for neighbour in range(len(graph[node])):
-        if graph[node][neighbour] != 0:
+        changed = False
+        if graph[node][neighbour] != 0: # dobavitj if not changed: stop process
+          saved_weight = graph[node][neighbour]
           relax(dist, node, neighbour, graph[node][neighbour])
+          changed = saved_weight != graph[node][neighbour]
+
+      if not changed:
+        break
 
   return dist[end]
 
@@ -40,6 +46,7 @@ def create_graph(n):
 
 def solve(n):
   graph = create_graph(n)
+  # vmesto create graph luche generitj weight naprjamuju
   return bellman_ford(graph, 0, n - 1)
 
 
@@ -52,3 +59,4 @@ def solve(n):
 
 # V 1 sekundu na boljshih znachinjah N ne ulozhitsja. Heap?
 print('Result', solve(3))
+

@@ -1,20 +1,26 @@
+# ещё вариант зранить 2 массива - на каждый уровень дерева.
+# высота дерево = кол-во уровней
+# можно раскрасить цвета
+
+
 def find_min_steps_for_knight(start_coordinate, finish_coordinate, board_size):
   move_queue = [(start_coordinate[0], start_coordinate[1], 0)] # x, y, distance
 
   movements_x_y = [(2, 1), (-2, 1), (1, 2), (-1, 2),  (2, -1), (-2, -1), (1, -2), (-1, -2)]
 
-  board_cells_visited = [[False for i in range(board_size)] for j in range(board_size)] 
+  board_cells_visited = [[False] * board_size]]
+  # board_cells_visited = [[False for i in range(board_size)] for j in range(board_size)] 
   board_cells_visited[start_coordinate[0]][start_coordinate[1]] = True # initial position 
 
   is_within_bounds = lambda coordinate, lower_bound, upper_bound: coordinate > lower_bound and coordinate < upper_bound
 
-  while (len(move_queue) > 0): # while queue is not empty
+  while move_queue: # while queue is not empty
     first_in_queue = move_queue.pop(0)
     x = first_in_queue[0]
     y = first_in_queue[1]
     distance_so_far = first_in_queue[2]
 
-    if x == finish_coordinate[0] and y == finish_coordinate[1]:
+    if x, y == finish_coordinate:
       # reached last cell. Should return stepsCount / distance
       return distance_so_far
     else:
