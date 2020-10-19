@@ -1,17 +1,28 @@
 class Solution:
     def findIntegers(self, num: int) -> int:
-        def solve(num_str):
-            print("num_str", num_str)
-            if len(num_str) == 2:
-                return 3
+        cache = dict()
+        
+        def solve(num_str, start):
+            if num_str in cache:
+                return cache[num_str]
             elif len(num_str) == 1:
-                return 1 if num_str == "1" else 0
+                return 2
             else:
-            
-                if num_str.startswith("11"):
-                    # dont count it
-                    return solve(num_str[1:])
-                else:
-                    return 1 + solve(num_str[2:])
+                count = 0
+                print(num_str, start)
                 
-        return solve("{0:b}".format(num))
+                for i in range(start + 1, len(num_str)):
+                    digit = num_str[i]
+                    if digit == "1":
+                        smaller_length_number = num_str[:i] + "0" + num_str[i + 1:]
+                        same_length_number = num_str[:i] + "10" + num_str[i + 2:] if len(num_str[i + 2:]) >= 2 else num_str[:i]
+                        
+                        count1 = solve(smaller_length_number, i)
+                        count2 = solve(same_length_number, i)
+                        count += count1 + count2
+                        
+                count3 = solve(num_str[:-1], 0)
+                count += count3
+                cache[num_str] = count
+                
+        return solve("{0:b}".format(num), 0)
